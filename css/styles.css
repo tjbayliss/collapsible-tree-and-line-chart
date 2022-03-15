@@ -1,0 +1,256 @@
+body {
+    /* font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; */
+    font-family: 'Arial';
+    margin: 0px;
+    position: relative;
+    font-size: 14px;
+    /* width: 960px; */
+}
+
+
+.node circle {
+    fill: #fff;
+    stroke: #01324b;
+    stroke-width: 1px;
+}
+
+.node circle:hover {
+    cursor: pointer;
+}
+
+.lineNode {
+    fill: #fff;
+    stroke-width: 1px;
+}
+
+.lineNode:hover {
+    cursor: pointer;
+    /* fill: #be1818 !important; */
+}
+
+/* 
+.line-selected-sortOrder {
+    fill: #be1818 !important;
+} */
+
+/* .node text {
+    font: 12px sans-serif;
+    fill: #fff;
+} */
+
+.node-text-label {
+    font: 12px sans-serif;
+    fill: #000;
+    pointer-events: none;
+    /* transform: rotate(270deg); */
+}
+
+.node-text-count {
+    font: 12px sans-serif;
+    fill: #FFF;
+    pointer-events: none;
+    /* transform: rotate(270deg); */
+}
+
+.link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 2px;
+    opacity: 0.5;
+}
+
+.collapsible-tree-rotation-group {
+    transform-origin: center;
+    transform: translate(0%, 50%) rotate(90deg);
+}
+
+.focus.line {
+    fill: none;
+    stroke: #cedbe0;
+    stroke-width: 2;
+    clip-path: url(#clip);
+}
+
+.context.line {
+    fill: none;
+    stroke: #cedbe0;
+    stroke-width: 1;
+    clip-path: url(#clip);
+}
+
+.zoom {
+    cursor: move;
+    fill: none;
+    pointer-events: all;
+}
+
+.selection {
+    stroke: #000;
+}
+
+.line-annotation-label {
+    font-size: 0.75rem;
+    fill: #000;
+    stroke: none;
+    stroke-width: 0;
+    text-anchor: start;
+}
+
+
+.collapsible-tree-svg {
+    background-color: #FFF;
+    float: left;
+}
+
+.small-multiples-svg {
+    background-color: #FFF;
+    float: right;
+}
+
+.line-chart-svg {
+    background-color: #FFF;
+}
+
+.smallMultipleChart.axis.axis--y text {
+    text-anchor: start;
+}
+
+.smallMultipleChart.axis.axis--x text {
+    text-anchor: middle;
+}
+
+/*
+.axis.axis--x.tick text {
+    text-anchor: middle;
+} */
+
+.trimmed:hover {
+    cursor: pointer;
+}
+
+.tick-rect-group:hover {
+    cursor: pointer;
+
+}
+
+.sortLabel {
+    opacity: 0.5;
+}
+
+.sortLabel.selected-sortOrder {
+    opacity: 1;
+    fill: #0070a8;
+    font-weight: bold;
+}
+
+.sortLabel:hover {
+    cursor: pointer;
+    fill: #0070a8;
+    font-weight: bold;
+}
+
+.maskingBars {
+    opacity: 0.0;
+    fill: #cedbe0;
+}
+
+.maskingBars:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.handle {
+    fill: #0070a8;
+}
+
+
+
+.hide {
+    display: none;
+}
+
+
+
+.blueHighlight {
+    color: #0070a8;
+    font-weight: bold;
+}
+
+.orangeHighlight {
+    color: #c75301;
+    font-weight: bold;
+}
+
+.instructions {
+    width: 50%;
+    margin: 50px auto;
+
+}
+
+.instruction {
+    font-size: 2.0rem;
+    font-weight: bold;
+}
+
+.instructionsList {
+    margin-bottom: 10px;
+}
+
+.submitTopic {
+    margin: 50px;
+}
+
+.mask {
+    width: 100%;
+    height: auto;
+    background-color: #FFF;
+    opacity: 0.95;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+}
+
+.hide {
+    display: none;
+}
+
+
+.container {
+    margin-top: 0%;
+}
+
+
+.box {
+    width: 300px;
+    border: 1px solid #000;
+    margin: 50px;
+    cursor: pointer;
+}
+
+.toggle-container {
+    transition: height 0.35s ease-in-out;
+    overflow: hidden;
+}
+
+.toggle-container:not(.active) {
+    display: none;
+}
+
+.instructionLabel {
+    font-size: 10px;
+    font-weight: bold;
+    text-align: left;
+    margin: 0px;
+    border-style: solid;
+    padding: 2px;
+    border-color: #000;
+}
+
+.instructionLabel:hover {
+    cursor: pointer;
+}
+
+
+form {
+    text-align: center;
+}

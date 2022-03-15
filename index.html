@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <title>PEARL Topic Modelling</title>
+</head>
+
+<body>
+  <div class="mask">
+    <div class="instructions">
+      <!--  <li class="instructionsList">
+        This prototype visualisation has been created for user testing in
+        relation to the PEARL project.
+      </li>
+      <li class="instructionsList">
+        It is presented as a possible replacement for the netowrk graphs
+        currently adopted in the PEARL PoC, namely:<br /><br />
+        <img src="image/image0.png" width="33%" height="33%" /><br /><br />
+      </li>
+      <li class="instructionsList">
+        The intention of this testing phase is to focus on user functionality,
+        not colour branding. Hence, the majority of colour styling has been
+        removed from this visualisation, and replaced by gray-scale design.
+        Light coloured styling has only been adopted in relation to some user
+        interaction with the chart. Where this is so, standard SNG primary and
+        secondary colour palettes have been adopted.
+      </li>
+
+      <li class="instructionsList">
+        When considering your feedback, focus on the following points:
+        <ol>
+          <li>
+            <b>User Functionality:</b> what functionality is currently not
+            present that you would like to be provided;
+          </li>
+          <li>
+            <b>Tooltip Content:</b> what data content/value-added information
+            would be useful on the tooltip;
+          </li>
+        </ol>
+      </li> -->
+      <!--  <li class="instructionsList">
+        Use the selection list below to select the main topic you would like to
+        explore using this prototype visualisation.
+      </li> -->
+    </div>
+    <form class="topic-selection-form">
+      <p class="instruction">Please select your preferred PEARL Topic:</p>
+      <!-- 
+      <input
+        type="radio"
+        id="aerogels"
+        class="radio aerogels"
+        name="topic"
+        value="aerogels"
+      />
+      <label for="aerogels">aerogels</label>
+      <input
+        type="radio"
+        id="black-holes"
+        class="radio black-holes"
+        name="topic"
+        value="black holes"
+      />
+      <label for="black-holes">black holes</label><br />
+      <input
+        type="button"
+        value="Submit"
+        class="submitTopic"
+        id="submitTopic"
+      /> -->
+    </form>
+  </div>
+  <!-- end mask -->
+  <!-- load the d3.js library -->
+  <div id="container" class="container hide">
+    <!-- <div class="js-toggle instructionLabel" data-container="toggle-1">
+      Instructions for Prototype
+    </div> -->
+    <!-- <div class="toggle-container" id="toggle-1">
+      <div class="instructions">
+        <li class="instructionsList">
+          Some functionality has been provided, namely:
+          <ol>
+            
+            <li>
+              When loaded initially, the chart will default to a 'stacked'
+              column chart. Users can modify the chart type used to display data
+              by selecting one of the three charting option radio buttons found
+              above the chart. Users can select either a stacked, grouped or
+              100%-stacked column chart. The chart will automatically transition
+              to display the same data in the newly selected chart format.
+            </li>
+            <li>
+              Moving the mouse cursor over any data rectangle will display an
+              information tooltip. This currently shows arbitrary data relating
+              to the rectangle and column selected. The selected data block, and
+              all other data blocks in the same 'layer' will become highlighted.
+            </li>
+            <li>
+              Moving away from the selection will return all data blocks to its
+              original styling.
+            </li>
+            <li>
+              Clicking on a data block will render the styling persistent. The
+              selected data block will now render a different shade to the
+              others in the data layer. Now moving the cursor away from the
+              selection will not render the styling back to its default values.
+              The chart [type] can then be changed while the highlighting is
+              applied.
+            </li>  
+             <li>
+              Clicking a second time on the oroginally selected data block will
+              remove all style highlighting from the chart.
+            </li>
+          </ol>
+        </li>
+      </div>
+    </div> -->
+    <svg class="collapsible-tree-svg" id="collapsible-tree-svg"></svg>
+    <svg class="small-multiples-svg" id="small-multiples-svg"></svg>
+    <svg
+      class="line-chart-svg"
+      id="line-chart-svg"
+      width="1000"
+      height="400"
+    ></svg>
+  </div>
+
+  <script src="js/d3.v5.min.js"></script>
+  <script src="js/selector-page.js"></script>
+  <script src="js/script-lineChart.js"></script>
+  <script src="js/script-Small-Multiples.js"></script>
+  <script src="js/script-Collapsible-Tree.js"></script>
+</body>
