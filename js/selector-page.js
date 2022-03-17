@@ -79,28 +79,36 @@ function buildSelectionPage() {
         d3.selectAll(".container").classed("hide", false);
 
         var promises = [];
-
         var files = [];
+        var filesToUse = "live"; /* "test" */ /* "live" */
 
-        console.log("files Check");
-        if (filesToUse == "live") {
-          files = [
-            /* articles Per Topic, */
-            "data/" + selectValue + "/articlesPerTopic.json",
+        // console.log("files Check");
+        // if (filesToUse == "live") {
+        //   files = [
+        //     /* articles Per Topic, */
+        //     "data/" + selectValue + "/articlesPerTopic-v2.json",
 
-            /*  topics, */
-            "data/" + selectValue + "/topics.json",
-          ];
-        }
-        if (filesToUse == "test") {
-          files = [
-            /*  topics, */
-            "data/Black holes/data-lineChart.json",
+        //     /*  topics, */
+        //     "data/" + selectValue + "/topics-v2.json",
+        //   ];
+        // }
+        // if (filesToUse == "test") {
+        //   files = [
+        //     /* articles Per Topic, */
+        //     "data/" + selectValue + "/articlesPerTopic-v1.json",
 
-            /* articles Per Topic, */
-            "data/Black holes/data-treeChart.json",
-          ];
-        }
+        //     /*  topics, */
+        //     "data/" + selectValue + "/topics-v1.json",
+        //   ];
+        // }
+
+        files = [
+          /* articles Per Topic, */
+          "data/" + selectValue + "/articlesPerTopic.json",
+
+          /*  topics, */
+          "data/" + selectValue + "/topics.json",
+        ];
 
         console.log(files);
 
@@ -111,6 +119,7 @@ function buildSelectionPage() {
 
         Promise.all(promises)
           .then(function (values) {
+            console.log(values);
             drawCollapsibleTreeChart(values[1], selectValue);
             drawLineChart(values[0], selectValue);
           })

@@ -12,29 +12,14 @@
 console.log("PEARL - Tree Chart");
 
 pearlData.coloursAvailable = pearlData.colours;
-var filesToUse = "test"; /* "test" */
 
 function drawCollapsibleTreeChart(values, selectValue) {
-  console.log("values:", values);
-
   pearlData.tree = {};
-
-  values.forEach(function (d, i) {
-    var node = d;
-    var nodeParent = d.parent_id;
-    console.log(nodeParent, node);
-
-    if (nodeParent == "root") {
-      node.children = [];
-      pearlData.tree[nodeParent] = node;
-    }
-  }); // end forEach ...
-  console.log(pearlData.tree);
 
   // OLD CODE USING HARDCODED MANIPUALTED JSON OBJ.
   pearlData.collapsibleTreeData = {
     name: selectValue,
-    children: values[0].data,
+    children: values /* [0].data */,
   };
   console.log(pearlData.collapsibleTreeData);
 

@@ -47,7 +47,7 @@ var pearlData = {
   selectedSupTopicNode: "",
   smallMultipleChartSliceSize: 60,
   topicsToDisable: [
-    "Computational Social Science",
+    /* "Computational Social Science", */
     "Artificial Intelligence",
     "Biocomputing",
     "Egyptian 2021 Gastroenterology",
@@ -100,7 +100,8 @@ function drawLineChart(json, selectValue) {
   pearlData.formatDatePEARL = d3.timeFormat("%m %Y");
   pearlData.parseDatePEARL = d3.timeParse("%m %Y");
 
-  pearlData.data = json[0].data;
+  console.log(json);
+  pearlData.data = json /* [0].data */;
   pearlData.defaultStartDate = "01 2016";
   pearlData.defaultEndDate = "01 2021";
   pearlData.formattedDefaultStartDate = pearlData.parseDatePEARL(
