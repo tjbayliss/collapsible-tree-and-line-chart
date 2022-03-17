@@ -5,6 +5,9 @@
   - build based on this example version code:
       https://bl.ocks.org/d3noob/1a96af738c89b88723eb63456beb6510
       https://bl.ocks.org/mbostock/34f08d5e11952a80609169b7917d4172
+      
+      also uswful .. good design ...  (but d3 v3)
+      https://bl.ocks.org/robyngit/89327a78e22d138cff19c6de7288c1cf
 
 
   TO DOs:
@@ -257,7 +260,7 @@ function drawLineChart(json, selectValue) {
     .attr("x2", 0)
     .style("stroke-width", 1)
     .style("stroke", "#a0a0a0")
-    .style("opacity", 0.5);
+    .style("opacity", 0.3);
 
   focus
     .append("g")
@@ -278,7 +281,8 @@ function drawLineChart(json, selectValue) {
     .attr("x2", width)
     .style("stroke-width", 0.5)
     .style("stroke", "#a0a0a0")
-    .style("opacity", 0.33);
+    .style("stroke-dasharray", "2 2")
+    .style("opacity", 0.3);
 
   d3.selectAll(".lineChart.axis.axis--y")
     .append("text")
@@ -324,8 +328,21 @@ function drawLineChart(json, selectValue) {
     .append("g")
     .attr("class", "brush")
     .call(brush)
-    /*   .call(brush.move, x.range()) */
     .call(brush.move, defaultSelection);
+
+  d3.selectAll(".resize")
+    .attr("transform", "translate(0," + 0 + ")")
+    .attr("rx", 2.5)
+    .attr("ry", 2.5)
+    .attr("height", height2 + 6)
+    .attr("width", 5);
+
+  d3.selectAll(".handle")
+    .attr("transform", "translate(-1," + height2 / 3 + ")")
+    .attr("rx", 4)
+    .attr("ry", 4)
+    .attr("height", height2 / 3 + 6)
+    .attr("width", 8);
 
   svg
     .append("rect")
@@ -335,8 +352,6 @@ function drawLineChart(json, selectValue) {
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
     .call(zoom);
   // });// end data load ...
-
-  d3.selectAll(".handle").attr("w", 5);
 
   function brushed() {
     if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
@@ -353,7 +368,9 @@ function drawLineChart(json, selectValue) {
         zoom.transform,
         d3.zoomIdentity.scale(width / (s[1] - s[0])).translate(-s[0], 0)
       );
-  }
+
+    return;
+  } // end function brushed
 
   function zoomed() {
     if (d3.event.sourceEvent && d3.event.sourceEvent.type === "brush") return; // ignore zoom-by-brush
@@ -364,7 +381,9 @@ function drawLineChart(json, selectValue) {
     focus.selectAll(".line").attr("d", focusLine);
     focus.selectAll(".lineChart.axis--x").call(lineChart_xAxis);
     context.selectAll(".brush").call(brush.move, x.range().map(t.invertX, t));
-  }
+
+    return;
+  } // end function brushed
 
   d3.selection.prototype.moveToFront = function () {
     return this.each(function () {
@@ -385,11 +404,6 @@ function drawLineChart(json, selectValue) {
 } // end function drawLineChart()
 
 function lineAddRemove(colourToUse) {
-  console.log("pearlData.colours:", pearlData.colours);
-  console.log("pearlData.coloursAvailable:", pearlData.coloursAvailable);
-  console.log("pearlData.coloursUsed:", pearlData.coloursUsed);
-  console.log("pearlData.colourToUse:", pearlData.colourToUse);
-
   var circle = d3.selectAll(
     ".lineNode." + pearlData.selectedSupTopicNode.replaceAll(" ", "-")
   );

@@ -14,53 +14,23 @@ console.log("PEARL - Tree Chart");
 pearlData.coloursAvailable = pearlData.colours;
 var filesToUse = "test"; /* "test" */
 
-// var treeChartDataFiles = {
-//   "black-holes":
-//     "data/black-holes-data-bubbleChart.json" /* 1 */ /* https://dash.springernature.com/pearl/blackholes */,
-//   aerogels:
-//     "data/aerogels-data-bubbleChart.json" /* 14 */ /* https://dash.springernature.com/pearl/biopolymeraerogels */,
-// };
-
-// var lineChartDataFiles = {
-//   "black-holes":
-//     "data/black-holes-data-lineChart.json" /* 1 */ /* https://dash.springernature.com/pearl/blackholes */,
-//   aerogels:
-//     "data/aerogels-data-lineChart.json" /* 14 */ /* https://dash.springernature.com/pearl/biopolymeraerogels */,
-// };
-
-// var dataFiles = {
-//   aerogels: {
-//     treeChart: "data/aerogels/data-treeChart.json",
-//     lineChart: "data/aerogels/data-lineChart.json",
-//   },
-//   "black holes": {
-//     treeChart: "data/black holes/data-treeChart.json",
-//     lineChart: "data/black holes/data-lineChart.json",
-//   },
-// };
-
-// var files = [
-//   dataFiles[pearlData.topic].treeChart,
-//   dataFiles[pearlData.topic].lineChart,
-// ];
-
-// var promises = [];
-
-// files.forEach(function (url) {
-//   promises.push(d3.json(url));
-// });
-
-// Promise.all(promises)
-//   .then(function (values) {
-//     drawCollapsibleTreeChart(values[0]);
-//     drawLineChart(values[1]);
-//   })
-//   .catch(function (error) {
-//     // Do some error handling.
-//     console.log("error!:", error);
-//   });
-
 function drawCollapsibleTreeChart(values, selectValue) {
+  console.log("values:", values);
+
+  pearlData.tree = {};
+
+  values.forEach(function (d, i) {
+    var node = d;
+    var nodeParent = d.parent_id;
+    console.log(nodeParent, node);
+
+    if (nodeParent == "root") {
+      node.children = [];
+      pearlData.tree[nodeParent] = node;
+    }
+  }); // end forEach ...
+  console.log(pearlData.tree);
+
   // OLD CODE USING HARDCODED MANIPUALTED JSON OBJ.
   pearlData.collapsibleTreeData = {
     name: selectValue,
@@ -206,8 +176,7 @@ function drawCollapsibleTreeChart(values, selectValue) {
       .attr("class", "node")
       .attr("transform", function (d) {
         return "translate(" + source.y0 + "," + source.x0 + ")";
-      }); /* 
-      .on("click", click); */
+      });
 
     // Add Circle for the nodes
     nodeEnter
@@ -275,11 +244,6 @@ function drawCollapsibleTreeChart(values, selectValue) {
           if (circle.classed("line-selected")) {
             pearlData.lineCounter--;
 
-            // console.log(
-            //   "deselecting Line - new line count:",
-            //   pearlData.lineCounter
-            // );
-
             var circleColour = d3.select(this).style("fill");
 
             circle.classed("line-selected", false).style("fill", "#FFF");
@@ -288,10 +252,6 @@ function drawCollapsibleTreeChart(values, selectValue) {
 
             var index = pearlData.coloursUsed.indexOf(circleColour);
             pearlData.coloursUsed.splice(index, 1);
-
-            // console.log("coloursAvailable:", pearlData.coloursAvailable);
-            // console.log("circleColour:", circleColour);
-            // console.log("coloursUsed:", pearlData.coloursUsed);
 
             lineAddRemove("");
           }
@@ -302,10 +262,6 @@ function drawCollapsibleTreeChart(values, selectValue) {
           // if line has already been selected ...
           if (circle.classed("line-selected")) {
             pearlData.lineCounter--;
-            // console.log(
-            //   "deselecting Line - new line count:",
-            //   pearlData.lineCounter
-            // );
 
             var circleColour = d3.select(this).style("fill");
 
@@ -314,10 +270,6 @@ function drawCollapsibleTreeChart(values, selectValue) {
             pearlData.coloursAvailable.push(circleColour);
             var index = pearlData.coloursUsed.indexOf(circleColour);
             pearlData.coloursUsed.splice(index, 1);
-
-            // console.log("coloursAvailable:", pearlData.coloursAvailable);
-            // console.log("circleColour:", circleColour);
-            // console.log("coloursUsed:", pearlData.coloursUsed);
           }
 
           // if line has NOT already been selected ...
@@ -336,19 +288,11 @@ function drawCollapsibleTreeChart(values, selectValue) {
             pearlData.colourToUse = pearlData.coloursAvailable[0];
             pearlData.coloursUsed.push(pearlData.colourToUse);
 
-            // console.log(
-            //   "pearlData.coloursAvailable:",
-            //   pearlData.coloursAvailable
-            // );
-            // console.log("pearlData.colourToUse:", pearlData.colourToUse);
-            // console.log("pearlData.coloursUsed:", pearlData.coloursUsed);
-
             circle
               .classed("line-selected", true)
               .style("fill", pearlData.colourToUse);
           }
 
-          // console.log(pearlData.colourToUse);
           lineAddRemove(pearlData.colourToUse);
           // draw();
         }
@@ -406,7 +350,10 @@ function drawCollapsibleTreeChart(values, selectValue) {
     // Update the node attributes and style
     nodeUpdate
       .select("circle.node")
-      .attr("r", 10)
+      .attr("r", function (d, i) {
+        console.log(d);
+        return 10;
+      })
       .style("fill", function (d) {
         return d._children ? "#0070a8" : "#fff";
       })

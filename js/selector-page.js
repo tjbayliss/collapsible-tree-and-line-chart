@@ -80,17 +80,6 @@ function buildSelectionPage() {
 
         var promises = [];
 
-        // var dataFiles = {
-        //   aerogels: {
-        //     treeChart: "data/aerogels/topics.json",
-        //     lineChart: "data/aerogels/articlesPerTopic.json",
-        //   },
-        //   "black holes": {
-        //     treeChart: "data/black holes/topics.json",
-        //     lineChart: "data/black holes/articlesPerTopic.json",
-        //   },
-        // };
-
         var files = [];
 
         console.log("files Check");
@@ -122,9 +111,8 @@ function buildSelectionPage() {
 
         Promise.all(promises)
           .then(function (values) {
-            console.group(values);
-            drawCollapsibleTreeChart(values[1] /* [0] */, selectValue);
-            drawLineChart(values[0] /* [1] */, selectValue);
+            drawCollapsibleTreeChart(values[1], selectValue);
+            drawLineChart(values[0], selectValue);
           })
           .catch(function (error) {
             // Do some error handling.
